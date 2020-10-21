@@ -20,18 +20,22 @@ dependencies {
     implementation("org.postgresql:postgresql:42.2.18")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.flywaydb:flyway-core:7.0.4"  )
+    implementation("org.flywaydb:flyway-core:7.0.4")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
 }
-
+var placeHolders = mutableMapOf<Any,Any>()
+placeHolders.put("postgresql.user","big")
+placeHolders.put("postgresql.password","bigger")
+placeHolders.put("postgresql.db","postgres")
 flyway {
     url = "jdbc:postgresql://localhost:5432/postgres"
     user = "postgres"
     password = "sorravit"
+    placeholders = placeHolders
 }
 
 tasks.withType<Test> {
